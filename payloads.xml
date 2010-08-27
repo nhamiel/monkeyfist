@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 
+<!-- Configuration file for MonkeyFist
+Remember this has to be valid XML you have to specify charaters such as: " & <> in their html
+equivalents you get the point.
+Place the token, session id or other random data in the ID tags. 
+If you are confused check out the readme or http://hexsec.com/labs for more info.
+
+Also make sure you have a defaultpayload specified otherwise you may have some problems of you have a
+non-match condition. Your specified default payload has to go at the end of this file. You can
+omit a defaultpayload in a random attack.
+-->
+<ATTACKS>
+	<PAYLOAD n="1">
+		<SITE l="example1.com">
+			<METHOD>GET</METHOD>
+			<ID>rand=</ID>
+			<ID>sess=</ID>
+			<TARGET>http://example1.com/update.php?rand=&amp;sess=&amp;message=hello</TARGET>		
+		</SITE>
+	</PAYLOAD>
+	<PAYLOAD n="2">
+		<SITE l="www.example2.com">
+			<METHOD>POST</METHOD>
+			<ID>rand=</ID>
+			<ID>sess=</ID>
+			<TARGET>http://www.example2.com/update.php</TARGET>
+			<HEADER>User-Agent</HEADER>
+			<HEADVAL>Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)</HEADVAL>
+			<HEADER>Cookie</HEADER>
+			<HEADVAL>sess</HEADVAL>
+			<POSTVAR>foo</POSTVAR>
+			<POSTVAL>bar</POSTVAL>
+			<POSTVAR>morefoo</POSTVAR>
+			<POSTVAL>morebar</POSTVAL>
+			<POSTVAR>rand</POSTVAR>
+			<POSTVAL>rand</POSTVAL>
+		</SITE>
+	</PAYLOAD>
+	<PAYLOAD n="3">
+		<SITE l="example3.com">
+			<METHOD>PAGE</METHOD>
+			<ID>token=</ID>
+			<ATTACKTYPE>GET</ATTACKTYPE>
+			<TARGET>http://example3.com/test.php?token=</TARGET>
+			<DESTINATION>http://www.youtube.com/watch?v=ZA1NoOOoaNw</DESTINATION>
+		</SITE>
+	</PAYLOAD>
+	<PAYLOAD n="4">
+		<SITE l="example4.com">
+			<METHOD>PAGE</METHOD>
+			<ID>token=</ID>
+			<TARGET>http://www.example4.com/foo.php</TARGET>
+			<DESTINATION>http://www.google.com</DESTINATION>
+			<ATTACKTYPE>POST</ATTACKTYPE>
+			<POSTVAR>foo</POSTVAR>
+			<POSTVAL>bar</POSTVAL>
+			<POSTVAR>morefoo</POSTVAR>
+			<POSTVAL>morebar</POSTVAL>
+			<POSTVAR>token</POSTVAR>
+			<POSTVAL>token</POSTVAL>
+		</SITE>
+	</PAYLOAD>
+	<PAYLOAD n="5">
+		<SITE l="defaultpayload">
+			<TARGET>http://www.india-forums.com/images/actor/prabhu_deva.jpg</TARGET>
+		</SITE>
+	</PAYLOAD>
+</ATTACKS>
